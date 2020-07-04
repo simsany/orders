@@ -64,12 +64,12 @@ res.redirect("/");}}
 )});
 	
 	app.get("/orders", (req,res)=>{
-	
-Order.find({},function(err,orders){
+	res.render("order.ejs")});
+/*Order.find({},function(err,orders){
 	if(err){console.log("something went wrong");}
 	else{
 	res.render("order.ejs",{orders:orders,
-	weather:weather});}})});
+	weather:weather});}})});*/
 	
 	
 	app.post("/orders/:id", (req,res)=>{
