@@ -75,7 +75,7 @@ res.redirect("/");}}
 
 	
 	
-	app.post("/orders/:id", (req,res)=>{
+	/*app.post("/orders/:id", (req,res)=>{
 	Order.findByIdAndRemove(req.params.id,(err)=>{
 		if(err){console.log("Went wrong")}
 		else{
@@ -85,7 +85,7 @@ res.redirect("/");}}
 		
 	})
 }
-);
+);*/
 	
 	
 	
