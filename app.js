@@ -10,8 +10,8 @@ app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
 var weather;
-//mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
-/*var orderSchema=new mongoose.Schema({
+mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
+var orderSchema=new mongoose.Schema({
 	name: String,
 	email: String,
 	address: String,
@@ -19,8 +19,8 @@ var weather;
 	extra: String,
 	sauce: String,
 	quantity: String,
-    price: String,*
-});var Order=mongoose.model("Order",orderSchema);*/
+    price: String,
+});var Order=mongoose.model("Order",orderSchema);
 request('https://api.openweathermap.org/data/2.5/onecall?lat=48.13&lon=22.32&%20exclude=current,minutely,hourlyl&appid=d2b2eab54bef4bcb5c106c971a67f044', (error, response, body)=> {
   var body=JSON.parse(body);
    weather=((body.daily[0].temp.min+body.daily[0].temp.max)/2- 273.15).toFixed(2);
@@ -38,7 +38,7 @@ weather:weather});}
 );
 	
 	
-/*app.post("/", (req,res)=>{
+app.post("/", (req,res)=>{
 	console.log(req);	
 Order.create({
 name: req.body.name,
@@ -64,18 +64,18 @@ res.redirect("/");}}
 	
 	
 )});
-	*/
+	
 	app.get("/orders", (req,res)=>{
 	
-/*Order.find({},function(err,orders){
+Order.find({},function(err,orders){
 	if(err){console.log("something went wrong");}
 	else{
 	res.render("order.ejs",{orders:orders,
-	weather:weather});}})}*/res.render("order.ejs"));
+	weather:weather});}})});
 
 	
 	
-	/*app.post("/orders/:id", (req,res)=>{
+	app.post("/orders/:id", (req,res)=>{
 	Order.findByIdAndRemove(req.params.id,(err)=>{
 		if(err){console.log("Went wrong")}
 		else{
@@ -85,7 +85,7 @@ res.redirect("/");}}
 		
 	})
 }
-);*/
+);
 	
 	
 	
