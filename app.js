@@ -64,7 +64,7 @@ res.redirect("/");}}
 )});
 	
 	app.get("/or", (req,res)=>{
-	res.render("order.ejs")});
+	res.send("orders")});
 /*Order.find({},function(err,orders){
 	if(err){console.log("something went wrong");}
 	else{
