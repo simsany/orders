@@ -1,6 +1,17 @@
+var request = require("request");
+
+var express=require("express");
+var app=express();
+var bodyParser= require("body-parser");
+var mongoose=require("mongoose");
+const path = require('path');
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
+
 var weather;
+mongoose.connect("mongodb://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
 
 mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
 var orderSchema=new mongoose.Schema({
