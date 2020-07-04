@@ -1,0 +1,186 @@
+<%- include("header.ejs") -%>
+
+    
+        
+<form action="/" method="POST" onsubmit="alert('Köszönjük a vásárlást!')" id="order-form" class="col">
+            <div id="page" class="d-flex flex-column justify-content-between flex-lg-row">
+			
+			<div class="form-column">
+
+
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input class="form-control" id="name" name="name" type="text" required>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label for="email">Email cím: *</label>
+                    <input class="form-control" id="email" name="Email" type="email" required>
+                    <input class="hidden" id="32" name="sauces" type="text">
+                <input class="hidden" id="33" name="prices" type="text">
+                <input class="hidden" id="34" name="extras" type="text">
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label for="address">Cím: *</label>
+                    <input class="form-control" id="address" name="address" type="text" required>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label>Megjegyzés: *</label><br>
+                    <textarea class="form-control" id="comment" name="comment" rows="5" required></textarea>
+                </div>
+            </div>
+           
+             <div>
+                <legend>Személyes Adatok</legend>
+                <span>Extra feltét:</span>
+                <div>
+                    <input checked id="nothing" name="extra" type="radio" value="0">
+                    <label for="nothing">Nem kérek</label>
+                </div>
+                <div>
+                    <input id="cheese" name="extra" type="radio" value="300">
+                    <label for="cheese">Cheese</label>
+                </div>
+                <div>
+                    <input id="meet" name="extra" type="radio" value="300">
+                    <label for="meet">Meet</label>
+                </div>
+                <div>
+                    <input id="double-meat" name="extra" type="radio" value="300">
+                    <label for="double-meat">Double-meat</label>
+                </div>  
+                    
+                    <div>
+                        <input id="Double-cheese" name="extra" type="radio" value="300">
+                        <label for="Double-cheese">Double-cheese</label>
+                    </div>
+                    <div>
+                        <input id="hagyma" name="extra" type="radio" value="300">
+                        <label for="hagyma">Hagyma</label>
+                    </div>
+                    <div class="topping">
+                    </div>
+
+            
+
+           
+                <legend>Termék Adatai</legend>
+                <div class="form-group">
+
+                    <label for="sauce">Szósz</label>
+                    <select id="sauce" name="sauce">
+                        <option id="barbecue" value="0" selected>barbecue</option>
+                        <option id="csípős" value="100">csípős</option>
+                    </select>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Mennyiség</label>
+                    <input id="quantity" value="1" name="quantity" type="number" min="1" max="10" required>
+                </div>
+
+
+                <div class="form-group">
+                    <input class="btn btn-info " id="calculate" type="button" onclick="calcAmount() "
+                        value="Ár kiszámítása">Ár:
+                    <span id="show-amount" class="show-amount">0</span> <span>Ft</span>
+
+
+
+
+                </div>
+
+                
+                <div class="form-group">
+                    <input class="btn btn-info" type="submit" onmouseover="calcAmount()" value="Rendelés leadás">
+                </div>
+				</div>
+				
+				</div>
+</form>
+		
+            	
+        
+		
+    
+    <script src="main.js"></script>
+
+
+    
+
+</body>
+
+<style>
+form{
+display:flex;
+width:100%;
+height:100%;
+margin-right:20px;
+}
+
+ legend {
+    color: black
+}
+
+body {
+    color: black;
+    padding: 20px 0 20px 20px;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+
+    background-image: linear-gradient(115deg,
+            rgba(200, 85, 11, 0.3),
+            rgba(120, 50, 7, 0.5)),
+        url("burger.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+  background-position: center;
+}
+
+.show-amount {
+    margin-left: 5px;
+}
+
+iframe {
+    display: none;
+}
+
+#calculate {
+    margin-right: 5px;
+}
+
+html {
+    height: 100%;
+} 
+.hidden {
+  display: none;
+}
+.form-column{margin-right:50px;
+
+  }
+
+</style>
+    
+
+</html>

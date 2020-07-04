@@ -1,5 +1,4 @@
 var request = require("request");
-
 var express=require("express");
 var app=express();
 var bodyParser= require("body-parser");
@@ -10,6 +9,7 @@ app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
 var weather;
+
 mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
 var orderSchema=new mongoose.Schema({
 	name: String,
@@ -28,8 +28,6 @@ request('https://api.openweathermap.org/data/2.5/onecall?lat=48.13&lon=22.32&%20
   
 console.log(weather);
 });
-
-
 	
 app.get("/", (req,res)=>{
 	
@@ -50,8 +48,6 @@ email: req.body.Email,
 	quantity: req.body.quantity,
     price: req.body.prices,
 }
-
-
 ,function(err,order){
 	if(err){ console.log(err)}
 	else{
@@ -59,7 +55,6 @@ email: req.body.Email,
 		
 		
 res.redirect("/");}} 
-
 	
 	
 	
@@ -72,7 +67,6 @@ Order.find({},function(err,orders){
 	else{
 	res.render("order.ejs",{orders:orders,
 	weather:weather});}})});
-
 	
 	
 	app.post("/orders/:id", (req,res)=>{
