@@ -29,7 +29,7 @@ request('https://api.openweathermap.org/data/2.5/onecall?lat=48.13&lon=22.32&%20
    weather=((body.daily[0].temp.min+body.daily[0].temp.max)/2- 273.15).toFixed(2);
    
   
-console.log(weather);
+
 });
 	
 app.get("/", (req,res)=>{
@@ -40,7 +40,7 @@ weather:weather});}
 	
 	
 app.post("/", (req,res)=>{
-	console.log(req);	
+		
 Order.create({
 name: req.body.name,
 email: req.body.Email,
@@ -89,4 +89,4 @@ Order.find({},function(err,orders){
 	
 	
 	
-	app.listen(process.env.PORT,()=>console.log("juhu"));
+	app.listen(process.env.PORT);
