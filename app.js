@@ -63,13 +63,13 @@ res.redirect("/");}}
 	
 )});
 	
-	app.get("/or", (req,res)=>{
-	res.send("orders")});
-/*Order.find({},function(err,orders){
+	app.get("/orders", (req,res)=>{
+	
+Order.find({},function(err,orders){
 	if(err){console.log("something went wrong");}
 	else{
 	res.render("order.ejs",{orders:orders,
-	weather:weather});}})});*/
+	weather:weather});}})});
 	
 	
 	app.post("/orders/:id", (req,res)=>{
@@ -89,4 +89,4 @@ res.redirect("/");}}
 	
 	
 	
-	app.listen(process.env.PORT,process.env.IP,()=>console.log("juhu"));
+	app.listen("5500","127.0.0.1",()=>console.log("juhu"));
