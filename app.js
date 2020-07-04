@@ -10,14 +10,7 @@ app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
 var weather;
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+
 mongoose.connect("mongodb://localhost/orders")
 var orderSchema=new mongoose.Schema({
 	name: String,
