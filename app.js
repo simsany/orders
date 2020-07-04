@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
-app.use(express.static(path.join(__dirname, 'views')));
+
 var weather;
 
 mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
