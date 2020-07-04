@@ -92,4 +92,4 @@ Order.find({},function(err,orders){
 	
 	
 	
-	app.listen("5500","127.0.0.1",()=>console.log("juhu"));
+	app.listen(process.env.PORT,process.env.IP,()=>console.log("juhu"));
