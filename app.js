@@ -38,7 +38,7 @@ weather:weather});}
 );
 	
 	
-/*app.post("/", (req,res)=>{
+app.post("/", (req,res)=>{
 	console.log(req);	
 Order.create({
 name: req.body.name,
@@ -50,7 +50,7 @@ email: req.body.Email,
 	quantity: req.body.quantity,
     price: req.body.prices,
 }
-*/
+
 
 ,function(err,order){
 	if(err){ console.log(err)}
