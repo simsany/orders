@@ -28,7 +28,11 @@ request('https://api.openweathermap.org/data/2.5/onecall?lat=48.13&lon=22.32&%20
   
 console.log(weather);
 });
-
+app.get("/sasa", (req,res)=>{
+	
+res.render("index.ejs",{
+weather:weather});}
+);
 
 	
 app.get("/", (req,res)=>{
