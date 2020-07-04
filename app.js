@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
 
 var weather;
-mongoose.connect("mongodb://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
+
 
 mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
 var orderSchema=new mongoose.Schema({
