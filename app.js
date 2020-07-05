@@ -9,7 +9,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'img')));
-
+methodOverride=require("method-override")
+app.use(methodOverride("_method"))
 var weather;
 
 
@@ -72,7 +73,7 @@ Order.find({},function(err,orders){
 	weather:weather});}})});
 	
 	
-	app.post("/orders/:id", (req,res)=>{
+	app.delete("/orders/:id", (req,res)=>{
 	Order.findByIdAndRemove(req.params.id,(err)=>{
 		if(err){console.log("Went wrong")}
 		else{
