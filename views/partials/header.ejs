@@ -23,9 +23,7 @@
   <div class="collapse navbar-collapse" id="camp-items">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       
-      <li class="nav-item">
-           <a class="nav-link" href="/orders"> Rendelések(később csak admin látja)</a>
-      </li>
+      
     </ul>
 	
 	  <div>Mai átlaghőmérséklet:&nbsp; <%=weather%>&nbsp;°C&nbsp; Mai ajánlat:&nbsp; <%switch(true){case weather<0:%> Forró csoki<% break;%>
@@ -35,9 +33,12 @@
 <%case weather<100:%> Jéghideg limonáde<% break;}%>	&nbsp;&nbsp;    
 	  </div>
     <div class="navbar-nav d-flex my-2 my-lg-0">
-      <a class="nav-link " href="#" >Bejelentkezés(majd)</a>
-     <a class="nav-link " href="#" >Regisztráció(majd)</a>
-	 <a class="nav-link " href="#" >Kijelentkezés(szintén)</a>
+	<%if(!currentUser){%>
+      <a class="nav-link " href="/login" >Bejelentkezés</a>
+     <a class="nav-link " href="/register" >Regisztráció</a>
+	  <%} else{%>
+	 <a class="nav-link " href="/logout" >Kijelentkezés</a>
+	    <%}%>
     </div>
   </div>
 </nav>

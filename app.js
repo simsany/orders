@@ -5,6 +5,10 @@ var app=express();
 var bodyParser= require("body-parser");
 var mongoose=require("mongoose");
 const path = require('path');
+var passport= require("passport"),
+	localStrategy= require("passport-local"),
+	passportLocalMongoose=require("passport-local-mongoose"),
+	User= require("./models/user")
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'css')));
@@ -13,6 +17,19 @@ methodOverride=require("method-override")
 app.use(methodOverride("_method"))
 var weather;
 
+	
+
+
+
+app.use(require("express-session")({secret:"Petra is the best!",
+resave:false,
+ saveUninitialized:false}));
+app.use(passport.initialize()); 
+app.use(passport.session()); 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+app.use(bodyParser.urlencoded({extended:true}));
+ passport.use(new localStrategy(User.authenticate()));
 
 mongoose.connect("mongodb+srv://sanyika:3956121@cluster0.hg5xp.mongodb.net/orders?retryWrites=true&w=majority")
 var orderSchema=new mongoose.Schema({
@@ -33,14 +50,14 @@ request('https://api.openweathermap.org/data/2.5/onecall?lat=48.13&lon=22.32&%20
 
 });
 	
-app.get("/", (req,res)=>{
+app.get("/",isLoggedIn, (req,res)=>{
 	
 res.render("index.ejs",{
-weather:weather});}
+weather:weather,currentUser:req.user});}
 );
 	
 	
-app.post("/", (req,res)=>{
+app.post("/",isLoggedIn, (req,res)=>{
 		
 Order.create({
 name: req.body.name,
@@ -64,13 +81,13 @@ res.redirect("/");}}
 	
 )});
 	
-	app.get("/orders", (req,res)=>{
+	app.get("/orders", isLoggedIn,(req,res)=>{
 	
 Order.find({},function(err,orders){
 	if(err){console.log("something went wrong");}
 	else{
 	res.render("order.ejs",{orders:orders,
-	weather:weather});}})});
+	weather:weather,currentUser:req.user});}})});
 	
 	
 	app.delete("/orders/:id", (req,res)=>{
@@ -86,8 +103,61 @@ Order.find({},function(err,orders){
 );
 	
 	
+
+
+
+app.get("/register",(req,res)=>{
+	res.render("register.ejs",{
+weather:weather,currentUser:req.user});
 	
 	
+});
+
+app.post("/register",(req,res)=>{
+	req.body.username
+	req.body.password
+	User.register (new User({username:req.body.username}),req.body.password,function(error,user){
+		if(error){console.log(error)}else{
+			
+			passport.authenticate("local")(req,res,function(){
+			res.redirect("/login");});	
+		}
+	});
+			
+		
+		
+		
+	
+	
+	
+});
+app.get("/login",(req,res)=>{
+	res.render("login.ejs",{
+weather:weather,currentUser:req.user});
+	
+	
+});
+
+app.post("/login",passport.authenticate("local",{successRedirect:"/",
+failureRedirect: "/login"}),(req,res)=>{
+	
+	
+	
+});
+
+app.get("/logout",function(req,res){
+	req.logout();
+	res.redirect("/");
+	
+	
+});
+	
+	function isLoggedIn(req,res,next){
+	if(req.isAuthenticated()){return next();}
+	else{res.redirect("/login")}
+	
+	
+}
 	
 	
 	app.listen(process.env.PORT);
